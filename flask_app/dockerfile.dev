@@ -1,5 +1,5 @@
 # Use the latest official Python image from DockerHub
-FROM python:3.8-alpine
+FROM python:3.8-slim
 
 # Set environment variables for Flask
 ENV FLASK_APP=app.py
