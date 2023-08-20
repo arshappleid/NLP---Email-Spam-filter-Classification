@@ -18,13 +18,19 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - name: Pull Latest changes
+      uses: actions/checkout@v3
+      
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: |
-        npm install --save-dev prettier @prettier/plugin-python
-        npx prettier --write .
+        python-version: 3.8
+
+    - name: Install black
+      run: pip install black
+
+    - name: Run black
+      run: black . --check
+      
+      
   
