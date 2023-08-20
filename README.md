@@ -99,8 +99,6 @@ That concludes this brief interrogation of a very simple dataset. Although I hav
 
 # NLP and Modelling
 
-Now we get to the learning part for me. My previous NLP experience has been captured [here](https://github.com/rgdavies92/salaries-in-data) in a General Assembly project concerning job salaries in data related roles. The workflow consisted of stemming words, removing stop-words, count-vectorising over n-grams and selecting the top n predictors for input to logistic regression. This worked quite well at the time but I'm going to try a different approach here.
-
 The workflow to be implemented in this spam project consists of the following:
 * Tokenize words in the messages to obtain integer vectors where each integer is the index of a token in a dictionary.
 * Pad the sequences to ensure all integer vectors have a constant length of 100 integers.
