@@ -1,19 +1,30 @@
 # Use the latest official Python image from DockerHub
 FROM python:3.8-alpine
 
+# Set environment variables for Flask
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_ENV=development
+
+# Create and activate a virtual environment
+RUN python -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy the requirements file into the container
 COPY requirements.txt .
-
+COPY requirements-dev.txt .
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements-dev.txt
 
 # Copy the current directory (i.e., your Python app) into the container
 COPY src/ .
 
 EXPOSE 5000
 
+
 # By default, execute python when the container starts
-CMD ["python", "./app.py"]
+CMD ["flask", "run"]
